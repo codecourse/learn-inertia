@@ -34,7 +34,12 @@ const createPost = () => {
                     <div v-if="form.errors.body" class="text-sm text-red-500">
                         {{ form.errors.body }}
                     </div>
-                    <button type="submit" class="mt-2 bg-gray-700 px-4 py-2 rounded-md font-medium text-white">Post</button>
+                    <button
+                        type="submit"
+                        class="mt-2 bg-gray-700 px-4 py-2 rounded-md font-medium text-white"
+                        :disabled="form.processing"
+                        :class="{ 'opacity-50': form.processing }"
+                    >Post</button>
                 </form>
 
                 <div v-for="post in posts" :key="post.id">
