@@ -9,11 +9,11 @@ defineProps({
 })
 
 const page = usePage()
-const toast = useToast()
+// const toast = useToast()
 
-watch(() => page.props.message, (message) => {
-    toast(message.body, { type: message.type })
-})
+// watch(() => page.props.message, (message) => {
+//     toast(message.body, { type: message.type })
+// })
 
 // console.log(page.props.greeting)
 
