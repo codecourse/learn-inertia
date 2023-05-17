@@ -3,6 +3,7 @@
 use App\Http\Controllers\CommentIndexController;
 use App\Http\Controllers\CommentStoreController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserShowController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -33,6 +34,8 @@ Route::get('/dashboard', function () {
 
 Route::get('/comments', CommentIndexController::class)->name('comments.index');
 Route::post('/comments', CommentStoreController::class)->name('comments.store');
+
+Route::get('/users/{user}', UserShowController::class)->name('users.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

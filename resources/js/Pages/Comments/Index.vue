@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, useForm, router } from '@inertiajs/vue3';
+import { Head, useForm, router, Link } from '@inertiajs/vue3';
 
 defineProps({
     posts: Array
@@ -56,7 +56,9 @@ const refreshComments = () => {
                 <div v-for="post in posts" :key="post.id">
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 text-gray-900">
-                            <div class="font-semibold">{{ post.user.name }}</div>
+                            <div class="font-semibold">
+                                <Link :href="`/users/${post.user.id}`">{{ post.user.name }}</Link>
+                            </div>
                             <p class="mt-1">{{ post.body }}</p>
                         </div>
                     </div>
