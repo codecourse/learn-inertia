@@ -27,4 +27,32 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $e)
+    {
+        $response = parent::render($request, $e);
+
+        if ($this->shouldRenderCustomErrorPage() && in_array($response->status(), [403, 404])) {
+            return inertia()->render('Error', [
+                'status' => $response->status()
+            ])
+                ->toResponse($request)
+                ->setStatusCode($response->status());
+        }
+
+        return $response;
+    }
+
+    protected function shouldRenderCustomErrorPage()
+    {
+        if (!app()->environment(['local', 'testing'])) {
+            return true;
+        }
+
+        if (config('app.custom_error_pages_enabled')) {
+            return true;
+        }
+
+        return false;
+    }
 }

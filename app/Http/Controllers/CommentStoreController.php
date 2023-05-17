@@ -16,6 +16,8 @@ class CommentStoreController extends Controller
     {
         // sleep(2);
 
+        abort(403);
+
         $this->authorize('create', Post::class);
 
         $this->validate($request, [

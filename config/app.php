@@ -185,4 +185,6 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'custom_error_pages_enabled' => env('CUSTOM_ERROR_PAGES_ENABLED')
+
 ];
