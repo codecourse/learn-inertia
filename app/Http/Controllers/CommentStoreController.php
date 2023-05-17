@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class CommentStoreController extends Controller
@@ -14,6 +15,8 @@ class CommentStoreController extends Controller
     public function __invoke(Request $request)
     {
         // sleep(2);
+
+        $this->authorize('create', Post::class);
 
         $this->validate($request, [
             'body' => ['required']

@@ -5,7 +5,8 @@ import { useToast } from 'vue-toastification'
 import { watch } from 'vue'
 
 defineProps({
-    posts: Array
+    posts: Array,
+    can: Object
 })
 
 const page = usePage()
@@ -51,7 +52,7 @@ const refreshComments = () => {
                     {{ $page.props.message }}
                 </div> -->
                 <!-- {{ $page.props.greeting }} -->
-                <form class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6" v-on:submit.prevent="createPost">
+                <form class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6" v-on:submit.prevent="createPost" v-if="can.create_post">
                     <label for="body" class="sr-only">Body</label>
                     <textarea name="body" id="body" cols="30" rows="5" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full" v-model="form.body" v-on:focus="form.clearErrors('body')"></textarea>
                     <div v-if="form.errors.body" class="text-sm text-red-500">
