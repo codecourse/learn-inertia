@@ -1,10 +1,14 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, useForm, router, Link } from '@inertiajs/vue3';
+import { Head, useForm, router, Link, usePage } from '@inertiajs/vue3';
 
 defineProps({
     posts: Array
 })
+
+const page = usePage()
+
+// console.log(page.props.greeting)
 
 const form = useForm({
     body: '',
@@ -35,6 +39,7 @@ const refreshComments = () => {
 
         <div class="py-12">
             <div class="max-w-3xl mx-auto sm:px-6 lg:px-8 space-y-3">
+                <!-- {{ $page.props.greeting }} -->
                 <form class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6" v-on:submit.prevent="createPost">
                     <label for="body" class="sr-only">Body</label>
                     <textarea name="body" id="body" cols="30" rows="5" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full" v-model="form.body" v-on:focus="form.clearErrors('body')"></textarea>
@@ -54,7 +59,7 @@ const refreshComments = () => {
                     <button class="text-sm text-indigo-700" type="button" v-on:click="refreshComments">Refresh comments</button>
                 </div>
 
-                <div v-for="post in posts" :key="post.id">
+                <div v-for="post in $page.props.posts" :key="post.id">
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-6 text-gray-900">
                             <div class="font-semibold">
