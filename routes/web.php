@@ -37,6 +37,8 @@ Route::post('/comments', CommentStoreController::class)->name('comments.store');
 
 Route::get('/users/{user}', UserShowController::class)->name('users.show');
 
+Route::inertia('/about', 'About', ['appName' => config('app.name')]);
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
