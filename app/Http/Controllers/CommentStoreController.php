@@ -21,6 +21,6 @@ class CommentStoreController extends Controller
 
         $request->user()->posts()->create($request->only('body'));
 
-        return back();
+        return back()->with('message', 'Comment posted!');
     }
 }

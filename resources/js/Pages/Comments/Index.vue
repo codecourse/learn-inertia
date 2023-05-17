@@ -1,12 +1,14 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, useForm, router, Link, usePage } from '@inertiajs/vue3';
+import { useToast } from 'vue-toastification'
 
 defineProps({
     posts: Array
 })
 
 const page = usePage()
+const toast = useToast()
 
 // console.log(page.props.greeting)
 
@@ -18,6 +20,7 @@ const createPost = () => {
     form.post(route('comments.store'), {
         preserveScroll: true,
         onSuccess: () => {
+            toast('Comment posted!')
             form.reset()
         }
     })
