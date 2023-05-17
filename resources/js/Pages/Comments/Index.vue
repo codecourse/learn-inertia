@@ -2,6 +2,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, useForm, router, Link, usePage } from '@inertiajs/vue3';
 import { useToast } from 'vue-toastification'
+import { watch } from 'vue'
 
 defineProps({
     posts: Array
@@ -9,6 +10,10 @@ defineProps({
 
 const page = usePage()
 const toast = useToast()
+
+watch(() => page.props.message, (message) => {
+    toast(message.body, { type: message.type })
+})
 
 // console.log(page.props.greeting)
 
@@ -20,7 +25,6 @@ const createPost = () => {
     form.post(route('comments.store'), {
         preserveScroll: true,
         onSuccess: () => {
-            toast('Comment posted!')
             form.reset()
         }
     })
@@ -42,6 +46,9 @@ const refreshComments = () => {
 
         <div class="py-12">
             <div class="max-w-3xl mx-auto sm:px-6 lg:px-8 space-y-3">
+                <!-- <div v-if="$page.props.message">
+                    {{ $page.props.message }}
+                </div> -->
                 <!-- {{ $page.props.greeting }} -->
                 <form class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6" v-on:submit.prevent="createPost">
                     <label for="body" class="sr-only">Body</label>
