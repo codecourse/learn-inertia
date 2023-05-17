@@ -33,6 +33,7 @@ const createPost = () => {
 const refreshComments = () => {
     router.get(route('comments.index'), {}, {
         preserveScroll: true,
+        preserveState: true,
         only: ['posts']
     })
 }
