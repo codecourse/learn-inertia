@@ -30,6 +30,9 @@ const createPost = () => {
                 <form class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6" v-on:submit.prevent="createPost">
                     <label for="body" class="sr-only">Body</label>
                     <textarea name="body" id="body" cols="30" rows="5" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm w-full" v-model="form.body"></textarea>
+                    <div v-if="form.errors.body" class="text-sm text-red-500">
+                        {{ form.errors.body }}
+                    </div>
                     <button type="submit" class="mt-2 bg-gray-700 px-4 py-2 rounded-md font-medium text-white">Post</button>
                 </form>
 
