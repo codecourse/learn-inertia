@@ -50,6 +50,7 @@ const refreshComments = () => {
                 </form>
 
                 <div class="py-3 flex justify-center">
+                    <!-- <Link href="/comments" class="text-sm text-indigo-700" preserve-scroll :only="['posts']">Refresh comments</Link> -->
                     <button class="text-sm text-indigo-700" type="button" v-on:click="refreshComments">Refresh comments</button>
                 </div>
 
