@@ -1,6 +1,6 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, useForm } from '@inertiajs/vue3';
+import { Head, useForm, router } from '@inertiajs/vue3';
 
 defineProps({
     posts: Array
@@ -16,6 +16,13 @@ const createPost = () => {
         onSuccess: () => {
             form.reset()
         }
+    })
+}
+
+const refreshComments = () => {
+    router.get('/comments', {}, {
+        preserveScroll: true,
+        only: ['posts']
     })
 }
 </script>
@@ -41,6 +48,10 @@ const createPost = () => {
                         :class="{ 'opacity-50': form.processing }"
                     >Post</button>
                 </form>
+
+                <div class="py-3 flex justify-center">
+                    <button class="text-sm text-indigo-700" type="button" v-on:click="refreshComments">Refresh comments</button>
+                </div>
 
                 <div v-for="post in posts" :key="post.id">
                     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
