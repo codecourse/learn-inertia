@@ -11,7 +11,11 @@ const form = useForm({
 })
 
 const createPost = () => {
-    form.post('/comments')
+    form.post('/comments', {
+        onSuccess: () => {
+            form.reset()
+        }
+    })
 }
 </script>
 
