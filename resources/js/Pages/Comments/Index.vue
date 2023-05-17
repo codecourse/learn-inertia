@@ -17,7 +17,7 @@ const page = usePage()
 
 // console.log(page.props.greeting)
 
-const form = useForm({
+const form = useForm('StoreComment', {
     body: '',
 })
 
