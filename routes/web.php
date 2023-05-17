@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentIndexController;
+use App\Http\Controllers\CommentStoreController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/comments', CommentIndexController::class)->name('comments.index');
+Route::post('/comments', CommentStoreController::class)->name('comments.store');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
